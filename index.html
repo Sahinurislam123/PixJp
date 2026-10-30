@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>PixZip — Photo Tools</title>
+<style>
+:root{--bg:#0b1220;--card:#121d30;--card2:#0e1829;--line:#293b56;--text:#f2f7ff;--muted:#9eafc8;--mint:#73f0c0;--blue:#75a7ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#1d4260 0,transparent 55%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:780px;margin:auto;padding:20px 14px 30px}.top{display:flex;align-items:center;gap:12px;margin-bottom:25px}.logo{width:54px;height:54px;flex:none;border-radius:18px;background:linear-gradient(140deg,#73f0c0,#75a7ff);box-shadow:0 8px 25px #56cdbb35;display:grid;place-items:center}.logo svg{width:34px;height:34px}.brand h1{font-size:24px;line-height:1.1;margin:0;letter-spacing:-.7px}.brand p{margin:5px 0 0;font-size:12px;color:var(--muted)}.privacy{margin-left:auto;font-size:11px;white-space:nowrap;color:#aaf5d8;border:1px solid #275647;background:#102b29;border-radius:99px;padding:6px 9px}
+.hero{margin-bottom:18px}.hero h2{font-size:clamp(27px,6vw,38px);line-height:1.12;letter-spacing:-1px;margin:0 0 9px}.hero p{color:var(--muted);margin:0;max-width:610px}
+.card{border:1px solid var(--line);border-radius:21px;background:linear-gradient(160deg,#152239,#101a2b);padding:17px;margin-bottom:14px;box-shadow:0 14px 35px #0002}.drop{display:block;text-align:center;border:1.5px dashed #476484;border-radius:16px;background:#0c1626;padding:25px 12px;cursor:pointer}.drop:hover,.drop.over{border-color:var(--mint);background:#10242b}.drop input{display:none}.drop .glyph{width:52px;height:52px;margin:auto;border-radius:16px;background:#1c3547;display:grid;place-items:center;color:var(--mint)}.drop h3{margin:10px 0 4px;font-size:16px}.drop p{font-size:12px;color:var(--muted);margin:0}.file{display:none;align-items:center;gap:10px;margin-top:12px;padding:9px;background:var(--card2);border:1px solid var(--line);border-radius:13px}.file img{width:52px;height:52px;object-fit:cover;border-radius:9px}.file .name{min-width:0;flex:1;overflow-wrap:anywhere;font-size:13px}.file small{display:block;color:var(--muted);font-size:11px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label,.range-label{display:block;font-size:12px;color:#cbd8eb;margin-bottom:7px}.field select,.field input[type=number]{width:100%;border:1px solid #334966;border-radius:11px;background:#0b1525;color:var(--text);padding:12px;font:inherit;outline:none}.field select:focus,.field input:focus{border-color:var(--mint)}.units{display:flex;gap:6px;margin-top:7px}.unit{flex:1;padding:8px 3px;border:1px solid #334966;border-radius:9px;background:#0b1525;color:var(--muted);cursor:pointer}.unit.active{background:#14342e;border-color:var(--mint);color:#b9ffe6}.hint{font-size:11px;color:var(--muted);margin:7px 0 0;line-height:1.5}.range-head{display:flex;justify-content:space-between;align-items:center}.range-head strong{color:var(--mint)}input[type=range]{width:100%;accent-color:var(--mint);margin:12px 0 0}.check{display:flex;gap:8px;align-items:center;margin-top:14px;color:#cbd8eb;font-size:12px}.check input{accent-color:var(--mint)}.actions{display:flex;gap:9px;margin-top:17px}.btn{border:0;border-radius:12px;padding:12px 15px;font:inherit;font-weight:750;cursor:pointer}.btn:disabled{opacity:.45;cursor:not-allowed}.mainbtn{flex:1;background:var(--mint);color:#06251b}.alt{background:#22334b;border:1px solid #344a67;color:#eef5ff}.status{display:none;margin-top:13px;border-radius:11px;padding:11px 12px;background:#10302a;border:1px solid #285a4b;color:#bdffe5;font-size:12px}.status.error{background:#321e25;border-color:#71404c;color:#ffc4cb}.results{display:none}.results h3{margin:0 0 12px}.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}.preview{background:#0a1423;border:1px solid var(--line);border-radius:13px;padding:9px;min-width:0}.preview img{width:100%;height:165px;object-fit:contain;background:#070c14;border-radius:8px}.preview b{display:block;margin-top:8px;font-size:12px;overflow-wrap:anywhere}.preview small{display:block;color:var(--muted);font-size:11px;overflow-wrap:anywhere}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.stat{border:1px solid var(--line);background:#0c1626;border-radius:11px;padding:10px}.stat span{display:block;font-size:10px;color:var(--muted)}.stat b{font-size:14px;display:block;margin-top:4px}.credit{text-align:center;color:#8fa2bc;font-size:12px;padding:16px 4px 0}.credit strong{color:#e5efff}.credit .mini{color:var(--mint)}.foot{text-align:center;color:#8295af;font-size:11px;line-height:1.65;max-width:670px;margin:10px auto 0}
+@media(max-width:500px){.wrap{padding:15px 11px 24px}.card{padding:13px;border-radius:18px}.grid{grid-template-columns:1fr}.privacy{font-size:10px;padding:5px 7px}.preview img{height:125px}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}.top{gap:9px}.logo{width:48px;height:48px;border-radius:16px}.brand h1{font-size:22px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="top">
+  <div class="logo" aria-label="PixZip logo">
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <rect x="7" y="8" width="25" height="30" rx="5" stroke="#082b27" stroke-width="3"/>
+      <circle cx="15.5" cy="17" r="3" fill="#082b27"/>
+      <path d="M10 32l7-8 5 5 4-4 4 5" stroke="#082b27" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M33 14h8M37 10l4 4-4 4M41 31h-8M37 27l-4 4 4 4" stroke="#082b27" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="brand"><h1>PixZip</h1><p>Photo Compressor & Converter</p></div>
+  <div class="privacy">🔒 Device-only</div>
+</header>
+
+<section class="hero">
+  <h2>ছবি ছোট করুন,<br>ফরম্যাট বদলান।</h2>
+  <p>দ্রুত, সহজ, ব্যক্তিগত। আপনার ছবি আপনার ডিভাইসেই প্রসেস হবে—কোনো সার্ভারে আপলোড নয়।</p>
+</section>
+
+<section class="card">
+  <label class="drop" id="drop" for="pick">
+    <div class="glyph">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    </div>
+    <h3>ছবি বেছে নিন</h3><p>ট্যাপ করুন অথবা এখানে ছবি টেনে আনুন<br>JPG, PNG, WEBP এবং অন্যান্য image ফাইল</p>
+    <input id="pick" type="file" accept="image/*">
+  </label>
+  <div class="file" id="fileInfo"><img id="thumb" alt="Selected photo"><div class="name"><b id="fname"></b><small id="fsize"></small></div><button class="btn alt" id="change" type="button">বদলান</button></div>
+</section>
+
+<section class="card">
+  <div class="grid">
+    <div class="field">
+      <label for="format">ফরম্যাট পরিবর্তন</label>
+      <select id="format"><option value="image/jpeg">JPG / JPEG</option><option value="image/webp">WEBP</option><option value="image/png">PNG</option></select>
+      <p class="hint">PNG স্বচ্ছ ব্যাকগ্রাউন্ড রাখতে পারে। JPG-তে স্বচ্ছ অংশ সাদা হবে।</p>
+    </div>
+    <div class="field">
+      <label for="target">টার্গেট সাইজ</label>
+      <input id="target" type="number" min="1" step="any" value="200" placeholder="যেমন 200">
+      <div class="units"><button class="unit active" data-unit="KB" type="button">KB</button><button class="unit" data-unit="MB" type="button">MB</button><button class="unit" data-unit="GB" type="button">GB</button></div>
+      <p class="hint" id="targetHint">আনুমানিক 200 KB লক্ষ্য রাখা হবে।</p>
+    </div>
+  </div>
+  <div style="margin-top:20px">
+    <div class="range-head"><label class="range-label" for="quality">ছবির মান (Quality)</label><strong id="qval">80%</strong></div>
+    <input id="quality" type="range" min="10" max="100" value="80">
+    <p class="hint">সাইজের টার্গেট পেতে প্রয়োজনে মান কমানো হতে পারে।</p>
+  </div>
+  <div class="grid" style="margin-top:16px">
+    <div class="field"><label for="width">Width (px), ঐচ্ছিক</label><input id="width" type="number" min="1" placeholder="Original"></div>
+    <div class="field"><label for="height">Height (px), ঐচ্ছিক</label><input id="height" type="number" min="1" placeholder="Original"></div>
+  </div>
+  <label class="check"><input id="ratio" type="checkbox" checked> ছবির অনুপাত বজায় রাখুন</label>
+  <div class="actions"><button id="go" class="btn mainbtn" disabled>Compress & Convert</button><button id="reset" class="btn alt" type="button">Reset</button></div>
+  <div id="status" class="status" role="status"></div>
+</section>
+
+<section class="card results" id="results">
+  <h3>রেজাল্ট</h3>
+  <div class="compare">
+    <div class="preview"><img id="beforeImg" alt="Original"><b>Original</b><small id="beforeInfo"></small></div>
+    <div class="preview"><img id="afterImg" alt="Processed"><b>PixZip Output</b><small id="afterInfo"></small></div>
+  </div>
+  <div class="stats"><div class="stat"><span>আগের সাইজ</span><b id="beforeSize">—</b></div><div class="stat"><span>নতুন সাইজ</span><b id="afterSize">—</b></div><div class="stat"><span>সাইজের পরিবর্তন</span><b id="saved">—</b></div></div>
+  <div class="actions"><button id="download" class="btn mainbtn">Download Image</button><button id="another" class="btn alt">আরেকটি ছবি</button></div>
+</section>
+
+<footer>
+  <div class="credit">Made with care by <strong>Sahinur Islam</strong><br><span class="mini">© <span id="year"></span> Sahinur Islam · PixZip</span></div>
+  <p class="foot">Privacy first: ছবি আপনার ব্রাউজারের মধ্যেই প্রসেস হয়; কোনো সার্ভারে পাঠানো হয় না।<br>সতর্কতা: প্রতিটি ছবির জন্য নির্দিষ্ট KB/MB সাইজ নিশ্চিত করা যায় না। PNG-তে কমপ্রেশন সীমিত হতে পারে। GB সাইজের টার্গেট সাধারণ ছবির জন্য বাস্তবসম্মত নয়। এই সংস্করণে JPG, PNG ও WEBP আউটপুট আছে।</p>
+</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+let file=null,srcURL=null,outURL=null,outBlob=null,unit='KB';
+const factor={KB:1024,MB:1024**2,GB:1024**3};
+function size(n){if(n<1024)return n+' B';if(n<1024**2)return(n/1024).toFixed(1)+' KB';if(n<1024**3)return(n/1024**2).toFixed(2)+' MB';return(n/1024**3).toFixed(3)+' GB'}
+function revoke(u){if(u)URL.revokeObjectURL(u)}
+function status(msg,error=false){$('status').textContent=msg;$('status').className='status'+(error?' error':'');$('status').style.display='block'}
+function clearStatus(){$('status').style.display='none'}
+function choose(f){if(!f)return;if(!f.type.startsWith('image/'))return status('একটি image ফাইল বেছে নিন।',true);if(f.size>250*1024**2)return status('ফাইলটি 250 MB-এর বেশি। মোবাইলের মেমোরি বাঁচাতে ছোট ছবি ব্যবহার করুন।',true);file=f;revoke(srcURL);srcURL=URL.createObjectURL(f);$('thumb').src=srcURL;$('fname').textContent=f.name;$('fsize').textContent=size(f.size);$('fileInfo').style.display='flex';$('go').disabled=false;$('results').style.display='none';clearStatus()}
+$('pick').addEventListener('change',e=>choose(e.target.files[0]));$('change').onclick=()=> $('pick').click();
+$('drop').addEventListener('dragover',e=>{e.preventDefault();$('drop').classList.add('over')});$('drop').addEventListener('dragleave',()=>$('drop').classList.remove('over'));$('drop').addEventListener('drop',e=>{e.preventDefault();$('drop').classList.remove('over');choose(e.dataTransfer.files[0])});
+document.querySelectorAll('.unit').forEach(b=>b.onclick=()=>{document.querySelectorAll('.unit').forEach(x=>x.classList.toggle('active',x===b));unit=b.dataset.unit;hint()});
+function hint(){const n=Number($('target').value);$('targetHint').textContent=n>0?`আনুমানিক ${n} ${unit} লক্ষ্য রাখা হবে।`:'টার্গেট ফাঁকা থাকলে শুধু ফরম্যাট ও কোয়ালিটি অনুযায়ী কনভার্ট হবে।'}
+$('target').addEventListener('input',hint);$('quality').addEventListener('input',()=>$('qval').textContent=$('quality').value+'%');
+function toBlob(canvas,type,q){return new Promise(resolve=>canvas.toBlob(resolve,type,q))}
+async function process(){
+ if(!file)return;$('go').disabled=true;$('go').textContent='Processing…';clearStatus();
+ try{
+  const img=new Image();img.src=srcURL;await new Promise((ok,no)=>{img.onload=ok;img.onerror=no});
+  let w=img.naturalWidth,h=img.naturalHeight,mw=Number($('width').value),mh=Number($('height').value);
+  if(mw>0||mh>0){if($('ratio').checked){let scale=Math.min(mw>0?mw/w:Infinity,mh>0?mh/h:Infinity);if(Number.isFinite(scale)){w=Math.max(1,Math.round(w*scale));h=Math.max(1,Math.round(h*scale))}}else{if(mw>0)w=mw;if(mh>0)h=mh}}
+  const type=$('format').value,target=Number($('target').value)>0?Number($('target').value)*factor[unit]:null,lossy=type!=='image/png';
+  const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+  function draw(){const c=canvas.getContext('2d');if(type==='image/jpeg'){c.fillStyle='#fff';c.fillRect(0,0,w,h)}c.drawImage(img,0,0,w,h)}
+  draw();let q=Number($('quality').value)/100;let blob=await toBlob(canvas,type,lossy?q:undefined);
+  if(!blob)throw Error('এই ফরম্যাটটি ব্রাউজারে সমর্থিত নয়। অন্য ফরম্যাট চেষ্টা করুন।');
+  let tries=0;
+  if(target&&lossy){while(blob.size>target&&q>.1&&tries<12){q=Math.max(.1,q-.08);blob=await toBlob(canvas,type,q);tries++}
+   while(blob.size>target&&tries<22&&w>160&&h>160){w=Math.max(1,Math.round(w*.85));h=Math.max(1,Math.round(h*.85));canvas.width=w;canvas.height=h;draw();blob=await toBlob(canvas,type,q);tries++}}
+  outBlob=blob;revoke(outURL);outURL=URL.createObjectURL(blob);
+  $('beforeImg').src=srcURL;$('afterImg').src=outURL;$('beforeInfo').textContent=`${img.naturalWidth} × ${img.naturalHeight} · ${size(file.size)}`;$('afterInfo').textContent=`${w} × ${h} · ${(blob.type||type).replace('image/','').toUpperCase()}`;
+  $('beforeSize').textContent=size(file.size);$('afterSize').textContent=size(blob.size);const delta=file.size-blob.size;$('saved').textContent=delta>=0?`${(delta/file.size*100).toFixed(1)}% কম`:`${(Math.abs(delta)/file.size*100).toFixed(1)}% বেশি`;
+  $('results').style.display='block';
+  if(target&&blob.size>target*1.03)status(`ছবি তৈরি হয়েছে, তবে ${size(target)} টার্গেট পাওয়া যায়নি। বর্তমান সাইজ ${size(blob.size)}। কম Width/Height বা অন্য ফরম্যাট চেষ্টা করুন।`,true);
+  else if(target&&blob.size<target*.65)status('ছবি তৈরি হয়েছে। টার্গেটের চেয়ে ছোট হওয়া ঠিক আছে—অপ্রয়োজনে ফাইল বড় করা হয়নি।');
+  else status('সফল! Download Image চাপুন।');
+  $('results').scrollIntoView({behavior:'smooth',block:'start'});
+ }catch(e){status(e.message||'ছবি প্রসেস করা যায়নি। অন্য ছবি চেষ্টা করুন।',true)}
+ finally{$('go').disabled=false;$('go').textContent='Compress & Convert'}
+}
+$('go').onclick=process;
+$('download').onclick=()=>{if(!outBlob)return;const ext=outBlob.type==='image/png'?'png':outBlob.type==='image/webp'?'webp':'jpg';const a=document.createElement('a');a.href=outURL;a.download=(file?.name||'photo').replace(/\.[^.]+$/,'')+'_pixzip.'+ext;document.body.appendChild(a);a.click();a.remove()};
+function reset(){file=null;revoke(srcURL);revoke(outURL);srcURL=outURL=null;outBlob=null;$('pick').value='';$('fileInfo').style.display='none';$('results').style.display='none';$('go').disabled=true;$('target').value='200';$('format').value='image/jpeg';$('quality').value='80';$('qval').textContent='80%';$('width').value='';$('height').value='';unit='KB';document.querySelectorAll('.unit').forEach(b=>b.classList.toggle('active',b.dataset.unit==='KB'));hint();clearStatus()}
+$('reset').onclick=reset;$('another').onclick=()=>{reset();window.scrollTo({top:0,behavior:'smooth'})};
+$('year').textContent=new Date().getFullYear();hint();
+</script>
+</body>
+</html>
